@@ -67,8 +67,9 @@ flask/
 │   ├── yolo11n-pose.pt
 │   ├── yolo11n-seg.pt
 │   └── yolo11n.pt
-├── server.py
-└── imgcvt.py
+├── _server.py (โค้ดสมบูรณ์)
+├── imgcvt.py
+└── server.py (โค้ดที่นักเรียนต้องเติม)
 ```
 
 ---
