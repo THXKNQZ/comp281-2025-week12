@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Camera Publisher</title>
+	<!-- เชื่อมโยงไฟล์ CSS สำหรับตกแต่งหน้าตา -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+	<!-- เชื่อมโยงไฟล์ JavaScript (publisher.js) แบบ module -->
+	<script src="{{ url_for('static', filename='publisher.js') }}" type="module"></script>
+</head>
+
+<body>
+	<!-- ส่วนหัวของหน้า แสดงชื่อระบบและแผนภาพการไหลของข้อมูล -->
+	<div class="flex-row">
+		<div class="flex-item">
+			Camera Publisher <!-- ชื่อระบบ -->
+		</div>
+		<div class="flex-item">
+			<b>Camera</b> → Server → Viewer <!-- แสดงลำดับการส่งข้อมูล -->
+		</div>
+	</div>
+
+	<!-- ส่วนที่ 1: เลือกกล้องหรือไฟล์วิดีโอ และตั้งชื่อกล้อง/ข้อมูล -->
+	<div class="flex-row">
+		<div class="flex-item">1.</div>
+		<div class="flex-item">
+			<div class="flex-col">
+				<div class="flex-item">
+					<!-- ปุ่มสำหรับเริ่มต้นขอสิทธิ์เข้าถึงกล้อง -->
+					<button type="button" id="start">เริ่มเข้าถึงกล้อง</button>
+					<!-- ช่องกรอกชื่อกล้อง (สำหรับระบุชื่อกล้องที่ต้องการส่ง) -->
+					<input type="text" id="cam-name" placeholder="ชื่อกล้อง">
+					<!-- dropdown สำหรับเลือกรายการกล้องที่มีในเครื่อง -->
+					<select id="cam-select">
+						<option value="">(เลือกกล้อง)</option>
+					</select>
+				</div>
+				<div class="flex-item">
+					<!-- ช่องกรอกชื่อข้อมูล (ใช้กรณีส่งไฟล์วิดีโอ) -->
+					<input type="text" id="vid-name" placeholder="ชื่อข้อมูล">
+					<!-- input สำหรับเลือกไฟล์วิดีโอจากเครื่อง -->
+					<input type="file" id="file-video" accept="video/*" placeholder="เลือกไฟล์ video">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- ส่วนที่ 2: ปุ่มควบคุมการเชื่อมต่อกับเซิร์ฟเวอร์ -->
+	<div class="flex-row">
+		<div class="flex-item">2.</div>
+		<div class="flex-item">
+			<!-- ปุ่มสำหรับเชื่อมต่อและเริ่มส่งข้อมูลไปยังเซิร์ฟเวอร์ -->
+			<button type="button" id="connect">เชื่อมต่อและส่งข้อมูล</button>
+			<!-- ปุ่มสำหรับตัดการเชื่อมต่อและหยุดส่งข้อมูล -->
+			<button type="button" id="disconnect">ตัดการเชื่อมต่อและหยุดส่งข้อมูล</button>
+		</div>
+	</div>
+
+	<!-- ส่วนที่ 3: แสดงภาพจากกล้องหรือวิดีโอที่เลือก -->
+	<div class="flex-row">
+		<div class="flex-item">3.</div>
+		<div class="flex-item">
+			<!-- <video> สำหรับแสดงภาพกล้องหรือวิดีโอที่เลือก -->
+			<video id="cam-video" autoplay playsinline controls loop></video>
+			<!-- <canvas> สำหรับ overlay (เช่น วาดกรอบ/เส้น/ข้อมูลบนวิดีโอ) -->
+			<canvas id="cam-overlay"></canvas>
+			<!-- <canvas> สำหรับวาดเฟรมก่อนส่งขึ้นเซิร์ฟเวอร์ (ซ่อน) -->
+			<canvas id="cam-frame" class="hide"></canvas>
+		</div>
+	</div>
+</body>
+</html>

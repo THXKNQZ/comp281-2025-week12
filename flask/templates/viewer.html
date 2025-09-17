@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Camera Viewer</title>
+	<!-- เชื่อมโยงไฟล์ CSS สำหรับตกแต่งหน้าตา -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+	<!-- เชื่อมโยงไฟล์ JavaScript (viewer.js) แบบ module -->
+	<script src="{{ url_for('static', filename='viewer.js') }}" type="module"></script>
+</head>
+
+<body>
+	<!-- ส่วนหัวของหน้า แสดงชื่อระบบและแผนภาพการไหลของข้อมูล -->
+	<div class="flex-row">
+		<div class="flex-item">
+			Camera Viewer <!-- ชื่อระบบ -->
+		</div>
+		<div class="flex-item">
+			Camera → Server → <b>Viewer</b> <!-- แสดงลำดับการส่งข้อมูล -->
+		</div>
+	</div>
+
+	<!-- ส่วนที่ 1: ปุ่มควบคุมการเชื่อมต่อและเลือกกล้อง -->
+	<div class="flex-row">
+		<div class="flex-item">1.</div>
+		<div class="flex-item">
+			<!-- ปุ่มสำหรับเชื่อมต่อกับเซิร์ฟเวอร์ -->
+			<button type="button" id="connect">เชื่อมต่อ</button>
+			<!-- dropdown สำหรับเลือกรายชื่อกล้องที่ออนไลน์ -->
+			<select id="cam-select">
+				<option value="">(เลือกกล้อง)</option>
+			</select>
+			<!-- ปุ่มสำหรับตัดการเชื่อมต่อกับเซิร์ฟเวอร์ -->
+			<button type="button" id="disconnect">ตัดการเชื่อมต่อ</button>
+		</div>
+	</div>
+
+	<!-- ส่วนที่ 2: แสดงภาพจากกล้องที่เลือก -->
+	<div class="flex-row">
+		<div class="flex-item">2.</div>
+		<div class="flex-item">
+			<!-- <img> สำหรับแสดงเฟรมภาพที่รับจากเซิร์ฟเวอร์ -->
+			<img alt="camera frame" id="cam-frame">
+		</div>
+	</div>
+
+	<!-- ส่วนที่ 3: แสดงข้อมูลการนับจำนวนคนเดินผ่าน (ซ้าย→ขวา, ขวา→ซ้าย) -->
+	<div class="flex-row">
+		<div class="flex-item">3.</div>
+		<div class="flex-item">
+			<h3>People counter Left/Right</h3>
+			<!-- ชื่อกล้องที่กำลังดู -->
+			<p id="cam-name"></p>
+			<!-- จำนวนคนเดินจากซ้ายไปขวา -->
+			<p>Left -> Right: <span id="L2R"></span></p>
+			<!-- จำนวนคนเดินจากขวาไปซ้าย -->
+			<p>Right -> Left: <span id="R2L"></span></p>
+		</div>
+	</div>
+</body>
+</html>

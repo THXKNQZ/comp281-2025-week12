@@ -1,0 +1,37 @@
+/* กล่องแนวนอนสำหรับแถวหนึ่ง ๆ ของ UI */
+.flex-row {
+	margin: 10px;
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+}
+/* กล่องแนวตั้ง (ใช้จัดกลุ่มพารามิเตอร์) */
+.flex-col {
+	margin: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+/* กล่องย่อย ๆ ใส่กรอบ/เงาให้ดูแยกส่วนชัดเจน */
+.flex-item {
+	margin: 3px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+/* class อรรถประโยชน์: ซ่อน/แสดง */
+.hide { display: none; }
+.show { display: block; }
+
+/* วาง <video> เป็นเลเยอร์ล่าง สัมพันธ์กับ container ที่มี position:relative */
+#cam-video {
+	position: absolute;
+	top: 13;   /* NOTE: ควรระบุหน่วย เช่น 13px เพื่อความถูกต้องของ CSS */
+	left: 13;  /* NOTE: เช่นกัน: 13px */
+	z-index: 1;
+}
+/* canvas สำหรับ "เฟรมดิบ" ใช้ส่งขึ้นเซิร์ฟเวอร์ (ไม่ต้องให้ผู้ใช้เห็น) */
+#canvas-frame {
+	visibility: hidden; /* ซ่อนแต่ยังคงวาด/อ่านพิกเซลได้ */
+}
